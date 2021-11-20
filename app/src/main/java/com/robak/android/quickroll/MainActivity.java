@@ -1,23 +1,14 @@
 package com.robak.android.quickroll;
 
+import android.graphics.Color;
 import android.os.Bundle;
-
-import com.google.android.material.snackbar.Snackbar;
+import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
-
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
 import com.robak.android.quickroll.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
-
-    private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
 
     @Override
@@ -26,18 +17,39 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        binding.button.setOnClickListener(v -> {
+            try {
+                String valueText = binding.valueField.getText().toString();
+                int value = Integer.parseInt(valueText);
+
+                String rollText = binding.rollField.getText().toString();
+                int roll = Integer.parseInt(rollText);
+
+                setInfo(binding.editTextPhone3, value, 0, roll);
+            } catch (Exception e) {
+                System.out.print(e.getMessage());
+                binding.editTextPhone3.setText("");
+            }
+        });
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+    private void setInfo(EditText textField, int value, int modifier, int roll) {
+        boolean doubleValue = roll / 10 == roll % 10;
+        String comment = "";
+
+        if (roll + modifier > value) {
+            textField.setTextColor(Color.RED);
+            if (doubleValue) {
+                comment = "Fumble";
+            }
+        } else {
+            textField.setTextColor(Color.GREEN);
+            if (doubleValue) {
+                comment = "Critical";
+            }
+        }
+
+        binding.editTextPhone3.setText(String.format("%s %d PS", (value + modifier)/ 10 - roll / 10, comment));
     }
 }
