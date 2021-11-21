@@ -5,4 +5,10 @@
     <string name="previous">Previous</string>
     <string name="skill">Skill</string>
     <string name="roll">Roll</string>
+    <string name="critical">Critical</string>
+    <string name="fumbled">Fumbled</string>
+    <string name="auto_success">Auto Success</string>
+    <string name="auto_failure">Auto Failure</string>
+    <string name="SL">%d SL</string>
+    <string name="modifier">Modifier</string>
 </resources>

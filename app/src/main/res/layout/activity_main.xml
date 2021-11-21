@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,9 +19,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/skill"
-            app:layout_constraintEnd_toEndOf="@+id/value_field"
-            app:layout_constraintStart_toStartOf="@+id/value_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/value_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:cursorVisible="false"
+            android:digits="0123456789"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:layout_constraintBottom_toTopOf="@+id/textview_first2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_first"
+            android:importantForAutofill="no" />
 
         <TextView
             android:id="@+id/textview_first2"
@@ -29,68 +48,78 @@
             android:layout_height="wrap_content"
             android:text="@string/roll"
             app:layout_constraintBottom_toTopOf="@+id/roll_field"
-            app:layout_constraintEnd_toEndOf="@+id/value_field"
-            app:layout_constraintStart_toStartOf="@+id/value_field"
-            app:layout_constraintTop_toBottomOf="@id/value_field" />
-
-        <EditText
-            android:id="@+id/value_field"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:digits="0123456789"
-            android:ems="10"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
-            android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/textview_first2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first" />
+            app:layout_constraintTop_toBottomOf="@id/value_field" />
 
         <EditText
             android:id="@+id/roll_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:cursorVisible="false"
             android:digits="0123456789"
             android:ems="10"
+            android:gravity="center"
             android:inputType="phone"
             android:minHeight="48dp"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/textview_first3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first2" />
+            app:layout_constraintTop_toBottomOf="@+id/textview_first2"
+            android:importantForAutofill="no" />
 
-        <EditText
-            android:id="@+id/editTextPhone3"
+        <TextView
+            android:id="@+id/textview_first3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/modifier"
+            app:layout_constraintBottom_toTopOf="@+id/modifier_field"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roll_field" />
+
+        <EditText
+            android:id="@+id/modifier_field"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:cursorVisible="false"
+            android:digits="-0123456789"
+            android:ems="10"
+            android:gravity="center"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_first3"
+            android:importantForAutofill="no" />
+
+        <EditText
+            android:id="@+id/result_field"
+            android:layout_width="370dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:clickable="false"
             android:digits="0123456789"
             android:ems="10"
             android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
             android:inputType="phone"
+            android:longClickable="false"
             android:minHeight="48dp"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            android:gravity="center"
-            android:textSize="25dp"
+            android:textIsSelectable="false"
+            android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button" />
-
-        <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/roll_field" />
+            app:layout_constraintTop_toBottomOf="@+id/modifier_field"
+            android:importantForAutofill="no" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

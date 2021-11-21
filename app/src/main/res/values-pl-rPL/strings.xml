@@ -5,4 +5,10 @@
     <string name="previous">Poprzedni</string>
     <string name="skill">Cecha</string>
     <string name="roll">Rzut</string>
+    <string name="critical">Kryt.</string>
+    <string name="fumbled">Pech.</string>
+    <string name="auto_success">Auto Sukces</string>
+    <string name="auto_failure">Auto Porażka</string>
+    <string name="SL">%d PS</string>
+    <string name="modifier">Modyfikator</string>
 </resources>

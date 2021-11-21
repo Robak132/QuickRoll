@@ -2,11 +2,16 @@ package com.robak.android.quickroll;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.robak.android.quickroll.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -18,38 +23,51 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.button.setOnClickListener(v -> {
-            try {
-                String valueText = binding.valueField.getText().toString();
-                int value = Integer.parseInt(valueText);
-
-                String rollText = binding.rollField.getText().toString();
-                int roll = Integer.parseInt(rollText);
-
-                setInfo(binding.editTextPhone3, value, 0, roll);
-            } catch (Exception e) {
-                System.out.print(e.getMessage());
-                binding.editTextPhone3.setText("");
-            }
-        });
+        binding.valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+        binding.rollField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+//        binding.imageView.setOnClickListener(v -> {
+//            binding.imageView.setImageResource(R.drawable.sword_ready);
+//        });
+//        binding.imageView7.setOnClickListener(v -> binding.imageView.setImageResource(R.drawable.sword));
     }
 
-    private void setInfo(EditText textField, int value, int modifier, int roll) {
-        boolean doubleValue = roll / 10 == roll % 10;
-        String comment = "";
+    private void parseRoll() {
+        try {
+            String valueText = binding.valueField.getText().toString();
+            int value = Integer.parseInt(valueText);
 
-        if (roll + modifier > value) {
-            textField.setTextColor(Color.RED);
-            if (doubleValue) {
-                comment = "Fumble";
+            String rollText = binding.rollField.getText().toString();
+            int roll = Integer.parseInt(rollText);
+            if (roll > 100 || roll < 1) {
+                throw new Exception("Invalid roll value");
             }
-        } else {
-            textField.setTextColor(Color.GREEN);
-            if (doubleValue) {
-                comment = "Critical";
-            }
+
+            setInfo(binding.resultField, value, 0, roll);
+        } catch (Exception e) {
+            Log.e("Exception", e.getMessage());
+
+            System.out.print(e.getMessage());
+            binding.resultField.setText("");
         }
+    }
+    private void setInfo(EditText textField, int value, int modifier, int roll) {
+        boolean success = roll + modifier <= value;
+        boolean doubleValue = (roll / 10) % 10 == roll % 10;
 
-        binding.editTextPhone3.setText(String.format("%s %d PS", (value + modifier)/ 10 - roll / 10, comment));
+        int color = success ? Color.GREEN : Color.RED;
+        textField.setTextColor(color);
+
+
+        List<String> stringList = new ArrayList<>();
+        if (doubleValue) {
+            stringList.add(success ? getString(R.string.critical) : getString(R.string.fumbled));
+        }
+        if (roll <= 5 && roll >= 1)    stringList.add(getString(R.string.auto_success));
+        if (roll <= 100 && roll >= 96) stringList.add(getString(R.string.auto_failure));
+
+        int PS = (value + modifier) / 10 - roll / 10;
+        Log.d("PS", String.format("%d [%d] / %d [%d]", value, value / 10, roll, roll / 10));
+        stringList.add(String.format(getString(R.string.SL), PS));
+        binding.resultField.setText(String.join(" ", stringList));
     }
 }
