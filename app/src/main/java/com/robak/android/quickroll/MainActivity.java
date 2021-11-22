@@ -3,7 +3,6 @@ package com.robak.android.quickroll;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +14,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
+    static int distanceMode = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,15 @@ public class MainActivity extends AppCompatActivity {
 
         binding.valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
         binding.rollField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+        binding.range0.setOnClickListener(v -> {
+            if (distanceMode == 0) {
+                binding.range0.setColorFilter(getColor(R.color.black));
+                distanceMode = 1;
+            } else {
+                binding.range0.setColorFilter(getColor(R.color.green));
+                distanceMode = 0;
+            }
+        });
 //        binding.imageView.setOnClickListener(v -> {
 //            binding.imageView.setImageResource(R.drawable.sword_ready);
 //        });

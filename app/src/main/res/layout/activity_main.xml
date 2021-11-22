@@ -9,13 +9,56 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/swordImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/sword"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/sword" />
+
+        <ImageView
+            android:id="@+id/shieldImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:contentDescription="@string/shield"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bowImage"
+            app:layout_constraintStart_toEndOf="@+id/swordImage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/shield" />
+
+        <ImageView
+            android:id="@+id/bowImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/bow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/bow" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/text_skill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/skill"
@@ -27,25 +70,24 @@
             android:id="@+id/value_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:cursorVisible="false"
             android:digits="0123456789"
-            android:ems="10"
+            android:ems="3"
             android:gravity="center"
+            android:importantForAutofill="no"
             android:inputType="phone"
             android:minHeight="48dp"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            app:layout_constraintBottom_toTopOf="@+id/textview_first2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/text_skill" />
 
         <TextView
-            android:id="@+id/textview_first2"
+            android:id="@+id/text_roll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/roll"
             app:layout_constraintBottom_toTopOf="@+id/roll_field"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,47 +98,74 @@
             android:id="@+id/roll_field"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
             android:cursorVisible="false"
             android:digits="0123456789"
-            android:ems="10"
+            android:ems="3"
             android:gravity="center"
+            android:importantForAutofill="no"
             android:inputType="phone"
             android:minHeight="48dp"
             android:selectAllOnFocus="true"
             android:singleLine="true"
-            app:layout_constraintBottom_toTopOf="@+id/textview_first3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first2"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/text_roll" />
 
         <TextView
-            android:id="@+id/textview_first3"
+            android:id="@+id/text_modifier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="@string/modifier"
-            app:layout_constraintBottom_toTopOf="@+id/modifier_field"
+            app:layout_constraintBottom_toTopOf="@+id/SL_modifier_field"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/roll_field" />
+            app:layout_constraintTop_toBottomOf="@id/roll_field"
+            tools:ignore="NotSibling" />
 
-        <EditText
-            android:id="@+id/modifier_field"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:cursorVisible="false"
-            android:digits="-0123456789"
-            android:ems="10"
-            android:gravity="center"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:selectAllOnFocus="true"
-            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first3"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@id/text_modifier">
+
+            <EditText
+                android:id="@+id/modifier_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:digits="-0123456789"
+                android:ems="3"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/SL_modifier_field"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/SL_modifier_field"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:cursorVisible="false"
+                android:digits="-0123456789"
+                android:ems="3"
+                android:gravity="center"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:minHeight="48dp"
+                android:selectAllOnFocus="true"
+                android:singleLine="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/modifier_field"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText
             android:id="@+id/result_field"
@@ -109,6 +178,7 @@
             android:focusable="false"
             android:focusableInTouchMode="false"
             android:gravity="center"
+            android:importantForAutofill="no"
             android:inputType="phone"
             android:longClickable="false"
             android:minHeight="48dp"
@@ -118,9 +188,59 @@
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/modifier_field"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@id/text_modifier" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/range0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/range1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_range0"
+        app:tint="@color/green" />
+
+    <ImageView
+        android:id="@+id/range1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/range2"
+        app:layout_constraintStart_toEndOf="@+id/range0"
+        app:srcCompat="@drawable/ic_range1" />
+
+    <ImageView
+        android:id="@+id/range2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/range3"
+        app:layout_constraintStart_toEndOf="@+id/range1"
+        app:srcCompat="@drawable/ic_range2" />
+
+    <ImageView
+        android:id="@+id/range3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/range4"
+        app:layout_constraintStart_toEndOf="@+id/range2"
+        app:srcCompat="@drawable/ic_range3" />
+
+    <ImageView
+        android:id="@+id/range4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="252dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/range3"
+        app:srcCompat="@drawable/ic_range4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

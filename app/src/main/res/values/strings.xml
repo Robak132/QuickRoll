@@ -11,4 +11,7 @@
     <string name="auto_failure">Auto Failure</string>
     <string name="SL">%d SL</string>
     <string name="modifier">Modifier</string>
+    <string name="sword">Sword</string>
+    <string name="shield">Shield</string>
+    <string name="bow">Bow</string>
 </resources>

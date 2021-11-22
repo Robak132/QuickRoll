@@ -11,4 +11,7 @@
     <string name="auto_failure">Auto Porażka</string>
     <string name="SL">%d PS</string>
     <string name="modifier">Modyfikator</string>
+    <string name="sword">Miecz</string>
+    <string name="bow">Łuk</string>
+    <string name="shield">Tarcza</string>
 </resources>
