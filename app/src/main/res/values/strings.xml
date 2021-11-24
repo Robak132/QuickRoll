@@ -1,17 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">QuickRoll</string>
+    <string name="SL">%d SL</string>
     <string name="action_settings">Settings</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-    <string name="skill">Skill</string>
-    <string name="roll">Roll</string>
+    <string name="advantage">Advantage</string>
+    <string name="app_name" translatable="false">QuickRoll</string>
+    <string name="auto_failure">Auto Failure</string>
+    <string name="auto_success">Auto Success</string>
+    <string name="bow">Bow</string>
     <string name="critical">Critical</string>
     <string name="fumbled">Fumbled</string>
-    <string name="auto_success">Auto Success</string>
-    <string name="auto_failure">Auto Failure</string>
-    <string name="SL">%d SL</string>
     <string name="modifier">Modifier</string>
-    <string name="sword">Sword</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="roll">Roll</string>
     <string name="shield">Shield</string>
-    <string name="bow">Bow</string>
+    <string name="skill">Skill</string>
+    <string name="sword">Sword</string>
 </resources>

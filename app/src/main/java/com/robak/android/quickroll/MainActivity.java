@@ -1,20 +1,32 @@
 package com.robak.android.quickroll;
 
-import android.graphics.Color;
+import androidx.fragment.app.Fragment;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 
-import com.robak.android.quickroll.databinding.ActivityMainBinding;
+import com.robak.android.quickroll.databinding.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    static int distanceMode = 0;
+    private ObservableInteger viewModel;
+
+    static int generalMode = 0;
+    int modifier = 0;
+    int advantage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,21 +35,35 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        BowModifiers activeFragment = (BowModifiers) createFragment(new BowModifiers());
+        viewModel = new ViewModelProvider(this).get(ObservableInteger.class);
+        viewModel.observe(this, item -> updateModifier());
+
         binding.valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
         binding.rollField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
-        binding.range0.setOnClickListener(v -> {
-            if (distanceMode == 0) {
-                binding.range0.setColorFilter(getColor(R.color.black));
-                distanceMode = 1;
+        binding.bowImage.setOnClickListener(v -> {
+            if (generalMode == 2) {
+                binding.bowImage.setColorFilter(getColor(R.color.black));
+//                createFragment(new SwordModifiers());
+                generalMode = 0;
             } else {
-                binding.range0.setColorFilter(getColor(R.color.green));
-                distanceMode = 0;
+                binding.bowImage.setColorFilter(getColor(R.color.purple_primary));
+                createFragment(new BowModifiers());
+                generalMode = 2;
             }
         });
-//        binding.imageView.setOnClickListener(v -> {
-//            binding.imageView.setImageResource(R.drawable.sword_ready);
-//        });
-//        binding.imageView7.setOnClickListener(v -> binding.imageView.setImageResource(R.drawable.sword));
+
+        Spinner spinner = binding.advantageField;
+        Integer[] items = new Integer[9];
+        for (int i=0; i < 9; i++) {
+            items[i] = i;
+        }
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener((ItemSelectedAdapter) (parent, view, position, id) -> {
+            advantage = items[position] * 10;
+            parseRoll();
+        });
     }
 
     private void parseRoll() {
@@ -51,21 +77,17 @@ public class MainActivity extends AppCompatActivity {
                 throw new Exception("Invalid roll value");
             }
 
-            setInfo(binding.resultField, value, 0, roll);
+            setInfo(binding.resultField, value, roll, modifier + advantage);
         } catch (Exception e) {
             Log.e("Exception", e.getMessage());
-
-            System.out.print(e.getMessage());
             binding.resultField.setText("");
         }
     }
-    private void setInfo(EditText textField, int value, int modifier, int roll) {
-        boolean success = roll + modifier <= value;
+    private void setInfo(EditText textField, int value, int roll, int modifier) {
+        boolean success = roll <= value + modifier;
         boolean doubleValue = (roll / 10) % 10 == roll % 10;
 
-        int color = success ? Color.GREEN : Color.RED;
-        textField.setTextColor(color);
-
+        textField.setTextColor(success ? getColor(R.color.green) : getColor(R.color.red));
 
         List<String> stringList = new ArrayList<>();
         if (doubleValue) {
@@ -78,5 +100,25 @@ public class MainActivity extends AppCompatActivity {
         Log.d("PS", String.format("%d [%d] / %d [%d]", value, value / 10, roll, roll / 10));
         stringList.add(String.format(getString(R.string.SL), PS));
         binding.resultField.setText(String.join(" ", stringList));
+    }
+    private void updateModifier() {
+        modifier = viewModel.getValue();
+        binding.modifierField.setText(String.valueOf(modifier));
+        parseRoll();
+    }
+    private Fragment createFragment(Fragment fragment) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.frameLayout, fragment);
+        ft.commit();
+        return fragment;
+    }
+
+    ImageView getImageViewByName(String name) {
+        int id = getResources().getIdentifier(name, "id", getPackageName());
+        return findViewById(id);
+    }
+    void setImageColor(String name, int color) {
+        ImageView imageView = getImageViewByName(name);
+        imageView.setColorFilter(getColor(color));
     }
 }
