@@ -1,7 +1,6 @@
 package com.robak.android.quickroll;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,17 +13,18 @@ import com.robak.android.quickroll.tools.FragmentWithTools;
 import com.robak.android.quickroll.tools.ObservableModifier;
 
 public class BowModifiers extends FragmentWithTools {
-    View view;
     private ObservableModifier observableModifier;
 
     int range = 2;
     int enemySize = 3;
     int obstacle = 0;
+    int group = 0;
     int fear = 0;
+    int aim = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.bow_modifiers, container, false);
+        View view = inflater.inflate(R.layout.bow_modifiers, container, false);
         return view;
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -69,14 +69,35 @@ public class BowModifiers extends FragmentWithTools {
                 updateModifier();
             });
         }
+        for (int i = 1; i < 4; i++) {
+            int finalI = i;
+            ImageView imageView = getImageViewByName(view, "group" + i);
+            imageView.setOnClickListener(v -> {
+                if (group != 0) {
+                    setImageColor(view, "group" + group, R.color.black);
+                }
+                group = group == finalI ? 0 : finalI;
+                if (group != 0) {
+                    setImageColor(view, "group" + group, R.color.purple_primary);
+                }
+                updateModifier();
+            });
+        }
 
-        ImageView imageView = view.findViewById(R.id.fear);
-        imageView.setOnClickListener(v -> {
+        ImageView fearImageView = view.findViewById(R.id.fear);
+        fearImageView.setOnClickListener(v -> {
             int color = fear == 1 ? R.color.black : R.color.purple_primary;
-            setImageColor(imageView, color);
+            setImageColor(fearImageView, color);
             fear = 1 - fear;
             updateModifier();
-            Log.d("LOG", String.valueOf(fear));
+        });
+
+        ImageView aimView = view.findViewById(R.id.aim);
+        aimView.setOnClickListener(v -> {
+            int color = aim == 1 ? R.color.black : R.color.purple_primary;
+            setImageColor(aimView, color);
+            aim = 1 - aim;
+            updateModifier();
         });
     }
 
@@ -85,13 +106,15 @@ public class BowModifiers extends FragmentWithTools {
         observableModifier.setSLModifier(getSLModifier());
     }
     int getModifier() {
-        int relativeEnemySize = enemySize - 3;
-        relativeEnemySize = relativeEnemySize < 0 ? relativeEnemySize * 10 : relativeEnemySize * 20;
-        int relativeRange = 2 - range;
-        relativeRange = relativeRange < 0 ? relativeRange * 10 : relativeRange * 20;
-        int relativeObstacle = obstacle * (-10);
+        int enemySizeMod = enemySize - 3;
+        enemySizeMod = enemySizeMod < 0 ? enemySizeMod * 10 : enemySizeMod * 20;
+        int rangeMod = 2 - range;
+        rangeMod = rangeMod < 0 ? rangeMod * 10 : rangeMod * 20;
+        int obstacleMod = obstacle * (-10);
+        int groupMod = group * 20;
+        int aimMod = aim * (-20);
 
-        int totalModifier = relativeEnemySize + relativeObstacle + relativeRange;
+        int totalModifier = enemySizeMod + obstacleMod + rangeMod + groupMod + aimMod;
         return limitToRange(totalModifier, -30, 60);
     }
     int getSLModifier() {

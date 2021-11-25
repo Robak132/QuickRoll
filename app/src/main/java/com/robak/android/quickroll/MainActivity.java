@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,14 +78,15 @@ public class MainActivity extends AppCompatActivity {
                 throw new Exception("Invalid roll value");
             }
 
-            setInfo(binding.resultField, value, roll, modifier + advantage);
+            setInfo(binding.resultField, value, roll, modifier + advantage, SLModifier);
         } catch (Exception e) {
             Log.e("Exception", e.getMessage());
             binding.resultField.setText("");
         }
     }
-    private void setInfo(EditText textField, int value, int roll, int modifier) {
-        boolean success = roll <= value + modifier;
+    private void setInfo(EditText textField, int value, int roll, int modifier, int SLModifier) {
+        int PS = (value + modifier) / 10 - roll / 10 + SLModifier;
+        boolean success = (roll <= value + modifier);
         boolean doubleValue = (roll / 10) % 10 == roll % 10;
 
         textField.setTextColor(success ? getColor(R.color.green) : getColor(R.color.red));
@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
         if (roll <= 5 && roll >= 1)    stringList.add(getString(R.string.auto_success));
         if (roll <= 100 && roll >= 96) stringList.add(getString(R.string.auto_failure));
 
-        int PS = (value + modifier) / 10 - roll / 10;
         Log.d("PS", String.format("%d [%d] / %d [%d]", value, value / 10, roll, roll / 10));
         stringList.add(String.format(getString(R.string.SL), PS));
         binding.resultField.setText(String.join(" ", stringList));
@@ -115,14 +114,5 @@ public class MainActivity extends AppCompatActivity {
         ft.replace(R.id.frameLayout, fragment);
         ft.commit();
         return fragment;
-    }
-
-    ImageView getImageViewByName(String name) {
-        int id = getResources().getIdentifier(name, "id", getPackageName());
-        return findViewById(id);
-    }
-    void setImageColor(String name, int color) {
-        ImageView imageView = getImageViewByName(name);
-        imageView.setColorFilter(getColor(color));
     }
 }
