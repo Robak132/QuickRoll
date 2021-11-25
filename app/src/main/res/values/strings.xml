@@ -16,4 +16,6 @@
     <string name="shield">Shield</string>
     <string name="skill">Skill</string>
     <string name="sword">Sword</string>
+    <string name="zero" translatable="false">0</string>
+    <string name="zeroSL">0 SL</string>
 </resources>

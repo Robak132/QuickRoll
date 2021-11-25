@@ -22,7 +22,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_sword" />
+            app:srcCompat="@drawable/ic_sword"
+            app:tint="@color/red" />
 
         <ImageView
             android:id="@+id/shieldImage"
@@ -35,7 +36,8 @@
             app:layout_constraintEnd_toStartOf="@+id/bowImage"
             app:layout_constraintStart_toEndOf="@+id/swordImage"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_shield" />
+            app:srcCompat="@drawable/ic_shield"
+            app:tint="@color/red" />
 
         <ImageView
             android:id="@+id/bowImage"
@@ -184,15 +186,19 @@
                 android:id="@+id/modifier_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:cursorVisible="false"
                 android:digits="-0123456789"
                 android:ems="3"
                 android:gravity="center"
-                android:importantForAutofill="no"
-                android:inputType="phone"
                 android:minHeight="48dp"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
+                android:importantForAutofill="no"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:longClickable="false"
+                android:text="@string/zero"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/SL_modifier_field"
                 app:layout_constraintStart_toStartOf="parent"
@@ -203,19 +209,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:cursorVisible="false"
                 android:digits="-0123456789"
-                android:ems="3"
+                android:ems="4"
                 android:gravity="center"
-                android:importantForAutofill="no"
                 android:inputType="phone"
+                android:importantForAutofill="no"
                 android:minHeight="48dp"
                 android:selectAllOnFocus="true"
                 android:singleLine="true"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:longClickable="false"
+                android:text="@string/zeroSL"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/modifier_field"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <EditText

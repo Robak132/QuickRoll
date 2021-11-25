@@ -15,4 +15,5 @@
     <string name="shield">Tarcza</string>
     <string name="skill">Cecha</string>
     <string name="sword">Miecz</string>
+    <string name="zeroSL">0 PS</string>
 </resources>

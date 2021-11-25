@@ -1,4 +1,4 @@
-package com.robak.android.quickroll;
+package com.robak.android.quickroll.tools;
 
 import android.view.View;
 import android.widget.AdapterView;

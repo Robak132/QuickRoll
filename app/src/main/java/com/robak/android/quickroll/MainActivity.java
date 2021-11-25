@@ -4,8 +4,6 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -16,16 +14,20 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.robak.android.quickroll.databinding.*;
+import com.robak.android.quickroll.tools.ItemSelectedAdapter;
+import com.robak.android.quickroll.tools.ObservableModifier;
+import com.robak.android.quickroll.tools.TextChangedAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private ObservableInteger viewModel;
+    private ObservableModifier viewModel;
 
-    static int generalMode = 0;
+    static int generalMode = 2;
     int modifier = 0;
+    int SLModifier = 0;
     int advantage = 0;
 
     @Override
@@ -36,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         BowModifiers activeFragment = (BowModifiers) createFragment(new BowModifiers());
-        viewModel = new ViewModelProvider(this).get(ObservableInteger.class);
-        viewModel.observe(this, item -> updateModifier());
+        viewModel = new ViewModelProvider(this).get(ObservableModifier.class);
+        viewModel.observe(this, modifier -> updateModifier());
 
         binding.valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
         binding.rollField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
@@ -102,8 +104,10 @@ public class MainActivity extends AppCompatActivity {
         binding.resultField.setText(String.join(" ", stringList));
     }
     private void updateModifier() {
-        modifier = viewModel.getValue();
+        modifier = viewModel.getModifier();
+        SLModifier = viewModel.getSLModifier();
         binding.modifierField.setText(String.valueOf(modifier));
+        binding.SLModifierField.setText(String.format(getString(R.string.SL), SLModifier));
         parseRoll();
     }
     private Fragment createFragment(Fragment fragment) {

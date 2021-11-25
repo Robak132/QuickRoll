@@ -131,50 +131,83 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_size6" />
 
-
     <ImageView
-        android:id="@+id/obstacle0"
+        android:id="@+id/aim"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/obstacle1"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/group1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_bush" />
+        app:srcCompat="@drawable/ic_aim" />
+
+    <ImageView
+        android:id="@+id/group1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/aim"
+        app:layout_constraintEnd_toStartOf="@id/group2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_group1" />
+
+    <ImageView
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/group1"
+        app:layout_constraintEnd_toStartOf="@id/group3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_group2" />
+
+    <ImageView
+        android:id="@+id/group3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@id/group2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_group3" />
+
 
     <ImageView
         android:id="@+id/obstacle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="156dp"
         android:gravity="center"
         app:layout_constraintEnd_toStartOf="@+id/obstacle2"
-        app:layout_constraintStart_toEndOf="@id/obstacle0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fence" />
+        app:srcCompat="@drawable/ic_bush" />
 
     <ImageView
         android:id="@+id/obstacle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="156dp"
         android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/obstacle1"
+        app:layout_constraintEnd_toStartOf="@+id/obstacle3"
+        app:layout_constraintStart_toEndOf="@id/obstacle1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_wall" />
+        app:srcCompat="@drawable/ic_fence" />
 
     <ImageView
-        android:id="@+id/aim"
+        android:id="@+id/obstacle3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="156dp"
         android:gravity="center"
         app:layout_constraintEnd_toStartOf="@id/fear"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/obstacle2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_aim" />
+        app:srcCompat="@drawable/ic_wall" />
 
     <ImageView
         android:id="@+id/fear"
@@ -183,7 +216,7 @@
         android:layout_marginTop="156dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/aim"
+        app:layout_constraintStart_toEndOf="@+id/obstacle3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_fear" />
 
