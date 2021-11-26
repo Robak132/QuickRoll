@@ -36,6 +36,12 @@ public class ObservableModifier extends ViewModel {
         modifier.setSLModifier(value);
         mutableLiveData.setValue(modifier);
     }
+    public Modifier getModifierObject() {
+        return mutableLiveData.getValue();
+    }
+    public void setModifierObject(Modifier modifier) {
+        mutableLiveData.setValue(modifier);
+    }
 
     public void observe(@NonNull LifecycleOwner owner, @NonNull Observer<? super Modifier> observer) {
         mutableLiveData.observe(owner, observer);
