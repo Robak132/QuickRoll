@@ -9,6 +9,11 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.admanager.AdManagerAdView;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.robak.android.quickroll.databinding.*;
 import com.robak.android.quickroll.fragments.BowModifiers;
 import com.robak.android.quickroll.fragments.MainTable;
@@ -29,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AdManagerAdView adView = new AdManagerAdView(this);
+        adView.setAdSizes(AdSize.BANNER);
+        adView.setAdUnitId("/6499/example/banner");
+        // TODO: Add adView to your view hierarchy.
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
