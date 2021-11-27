@@ -47,8 +47,13 @@ public class MainTable extends FragmentWithTools {
         viewModel = new ViewModelProvider(this).get(ObservableModifier.class);
         viewModel.observe(this, modifier -> updateModifier());
 
-        ((EditText) view.findViewById(R.id.value_field)).addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
-        ((EditText) view.findViewById(R.id.roll_field)).addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+        EditText valueField = view.findViewById(R.id.value_field);
+        valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+        valueField.setOnLongClickListener(this::clearEditView);
+
+        EditText rollField = view.findViewById(R.id.roll_field);
+        rollField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
+        rollField.setOnLongClickListener(this::clearEditView);
 
         Spinner spinner = view.findViewById(R.id.advantage_field);
         Integer[] items = IntStream.range(0, 9).boxed().toArray(Integer[]::new);
@@ -100,5 +105,10 @@ public class MainTable extends FragmentWithTools {
         ((EditText) view.findViewById(R.id.modifier_field)).setText(String.valueOf(modifier.getModifier()));
         ((EditText) view.findViewById(R.id.SL_modifier_field)).setText(String.format(getString(R.string.SL), modifier.getSLModifier()));
         parseRoll();
+    }
+
+    private boolean clearEditView(View view) {
+        ((EditText) view).setText("");
+        return false;
     }
 }
