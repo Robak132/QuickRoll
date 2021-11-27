@@ -1,14 +1,14 @@
 package com.robak.android.quickroll.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
+import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.robak.android.quickroll.R;
@@ -17,6 +17,7 @@ import com.robak.android.quickroll.tools.ObservableModifier;
 
 public class BowModifiers extends FragmentWithTools {
     private ObservableModifier observableModifier;
+    private View view;
 
     int range = 2;
     int enemySize = 3;
@@ -25,9 +26,11 @@ public class BowModifiers extends FragmentWithTools {
     int fear = 0;
     int aim = 0;
 
+    // INIT
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.bow_modifiers, container, false);
+        view = inflater.inflate(R.layout.bow_modifiers, container, false);
+        return view;
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -101,6 +104,28 @@ public class BowModifiers extends FragmentWithTools {
             aim = 1 - aim;
             updateModifier();
         });
+    }
+
+    // RESUME
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        Log.d("STATE", "View Restored");
+        super.onViewStateRestored(savedInstanceState);
+
+        setImageColor(view, "range" + range, R.color.purple_primary);
+        setImageColor(view, "size" + enemySize, R.color.purple_primary);
+        if (obstacle != 0) {
+            setImageColor(view, "obstacle" + obstacle, R.color.purple_primary);
+        }
+        if (group != 0) {
+            setImageColor(view, "group" + group, R.color.purple_primary);
+        }
+        if (fear != 0) {
+            setImageColor(view, "fear", R.color.purple_primary);
+        }
+        if (fear != 0) {
+            setImageColor(view, "aim", R.color.purple_primary);
+        }
     }
 
     void updateModifier() {

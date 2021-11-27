@@ -11,8 +11,6 @@ import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.robak.android.quickroll.Modifier;
@@ -36,15 +34,16 @@ public class MainTable extends FragmentWithTools {
     public MainTable(Fragment _modifierFragment) {
         modifierFragment = _modifierFragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.main_table, container, false);
+        createFragment(modifierFragment, R.id.modifiersFrame);
         return view;
     }
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        createFragment(modifierFragment, R.id.modifiersFrame);
         viewModel = new ViewModelProvider(this).get(ObservableModifier.class);
         viewModel.observe(this, modifier -> updateModifier());
 
@@ -72,16 +71,15 @@ public class MainTable extends FragmentWithTools {
                 throw new Exception("Invalid roll value");
             }
 
-            setInfo(value, roll, modifier.getNumericModifier(), modifier.getSLModifier());
+            calculateResult(value, roll, modifier.getNumericModifier(), modifier.getSLModifier());
         } catch (Exception e) {
-            Log.e("Exception", e.getMessage());
             ((EditText) view.findViewById(R.id.result_field)).setText("");
         }
     }
-    private void setInfo(int value, int roll, int modifier, int SLModifier) {
+    private void calculateResult(int value, int roll, int modifier, int SLModifier) {
         int PS = (value + modifier) / 10 - roll / 10 + SLModifier;
         boolean success = (roll <= value + modifier);
-        boolean doubleValue = (roll / 10) % 10 == roll % 10;
+        boolean doubleValue = (roll / 10) % 100 == roll % 10;
 
         EditText editText = view.findViewById(R.id.result_field);
         editText.setTextColor(success ? getActivity().getColor(R.color.green) : getActivity().getColor(R.color.red));

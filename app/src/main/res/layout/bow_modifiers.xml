@@ -31,8 +31,7 @@
         app:layout_constraintEnd_toStartOf="@+id/range3"
         app:layout_constraintStart_toEndOf="@+id/range1"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range2"
-        app:tint="@color/purple_primary" />
+        app:srcCompat="@drawable/ic_range2" />
 
     <ImageView
         android:id="@+id/range3"
@@ -95,8 +94,7 @@
         app:layout_constraintEnd_toStartOf="@+id/size4"
         app:layout_constraintStart_toEndOf="@+id/size2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size3"
-        app:tint="@color/purple_primary" />
+        app:srcCompat="@drawable/ic_size3" />
 
     <ImageView
         android:id="@+id/size4"
@@ -137,8 +135,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/group1"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_aim" />
 
@@ -148,8 +146,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/aim"
         app:layout_constraintEnd_toStartOf="@id/group2"
+        app:layout_constraintStart_toEndOf="@id/aim"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_group1" />
 
@@ -159,8 +157,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/group1"
         app:layout_constraintEnd_toStartOf="@id/group3"
+        app:layout_constraintStart_toEndOf="@id/group1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_group2" />
 
@@ -170,8 +168,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/group2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/group2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_group3" />
 
@@ -220,4 +218,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_fear" />
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+</androidx.constraintlayout.widget.ConstraintLayout>
