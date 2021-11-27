@@ -26,7 +26,6 @@ import java.util.stream.IntStream;
 
 public class MainTable extends FragmentWithTools {
     private ObservableModifier viewModel;
-    private View view;
 
     Modifier modifier = new Modifier();
     Fragment modifierFragment;
@@ -100,7 +99,7 @@ public class MainTable extends FragmentWithTools {
         stringList.add(String.format(getString(R.string.SL), PS));
         editText.setText(String.join(" ", stringList));
     }
-    private void updateModifier() {
+    protected void updateModifier() {
         modifier = viewModel.getModifierObject();
         ((EditText) view.findViewById(R.id.modifier_field)).setText(String.valueOf(modifier.getModifier()));
         ((EditText) view.findViewById(R.id.SL_modifier_field)).setText(String.format(getString(R.string.SL), modifier.getSLModifier()));

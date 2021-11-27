@@ -6,216 +6,43 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/range0"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/range_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/range1"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range0" />
+        app:layout_constraintEnd_toEndOf="parent" >
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/range1"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/size_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/range2"
-        app:layout_constraintStart_toEndOf="@+id/range0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range1" />
-
-    <ImageView
-        android:id="@+id/range2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/range3"
-        app:layout_constraintStart_toEndOf="@+id/range1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range2" />
-
-    <ImageView
-        android:id="@+id/range3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/range4"
-        app:layout_constraintStart_toEndOf="@+id/range2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range3" />
-
-    <ImageView
-        android:id="@+id/range4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/range3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_range4" />
-
-
-    <ImageView
-        android:id="@+id/size0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size1"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/range_table"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size0" />
+        app:layout_constraintEnd_toEndOf="parent" >
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/size1"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/group_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size2"
-        app:layout_constraintStart_toEndOf="@+id/size0"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size1" />
-
-    <ImageView
-        android:id="@+id/size2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size3"
-        app:layout_constraintStart_toEndOf="@+id/size1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size2" />
-
-    <ImageView
-        android:id="@+id/size3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size4"
-        app:layout_constraintStart_toEndOf="@+id/size2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size3" />
-
-    <ImageView
-        android:id="@+id/size4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size5"
-        app:layout_constraintStart_toEndOf="@+id/size3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size4" />
-
-    <ImageView
-        android:id="@+id/size5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/size6"
-        app:layout_constraintStart_toEndOf="@+id/size4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size5" />
-
-    <ImageView
-        android:id="@+id/size6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/size5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_size6" />
-
-    <ImageView
-        android:id="@+id/aim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/group1"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/size_table"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_aim" />
+        app:layout_constraintEnd_toEndOf="parent" >
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/group1"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/obstacle_table"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/group2"
-        app:layout_constraintStart_toEndOf="@id/aim"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_group1" />
-
-    <ImageView
-        android:id="@+id/group2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/group3"
-        app:layout_constraintStart_toEndOf="@id/group1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_group2" />
-
-    <ImageView
-        android:id="@+id/group3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/group2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_group3" />
-
-
-    <ImageView
-        android:id="@+id/obstacle1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/obstacle2"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/group_table"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_bush" />
-
-    <ImageView
-        android:id="@+id/obstacle2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/obstacle3"
-        app:layout_constraintStart_toEndOf="@id/obstacle1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fence" />
-
-    <ImageView
-        android:id="@+id/obstacle3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@id/fear"
-        app:layout_constraintStart_toEndOf="@+id/obstacle2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_wall" />
-
-    <ImageView
-        android:id="@+id/fear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="156dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/obstacle3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_fear" />
+        app:layout_constraintEnd_toEndOf="parent" >
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

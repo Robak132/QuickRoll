@@ -24,4 +24,9 @@ public class SwordModifiers extends FragmentWithTools {
         super.onViewCreated(view, savedInstanceState);
         observableModifier = new ViewModelProvider(requireParentFragment()).get(ObservableModifier.class);
     }
+
+    @Override
+    protected void updateModifier() {
+
+    }
 }
