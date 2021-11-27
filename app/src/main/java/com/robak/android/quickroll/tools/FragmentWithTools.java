@@ -49,16 +49,10 @@ public abstract class FragmentWithTools extends Fragment {
             ImageView childView = createImageView(basename + i);
             childView.setImageResource(getDrawableByName("ic_" + basename + i));
             childView.setOnClickListener(v -> {
-                boolean clickedActive = pointer.get() != finalI;
-                if (!turnOff) {
-                    if (clickedActive) {
-                        setImageColorByTag(view, basename + pointer.get(), R.color.black);
-                        pointer.set(finalI);
-                        setImageColorByTag(view, basename + pointer.get(), R.color.purple_primary);
-                    }
-                } else {
+                boolean clickedNonActive = pointer.get() != finalI;
+                if (clickedNonActive || turnOff) {
                     setImageColorByTag(view, basename + pointer.get(), R.color.black);
-                    pointer.set(pointer.get() == finalI ? 0 : finalI);
+                    pointer.set(clickedNonActive ? finalI : 0);
                     setImageColorByTag(view, basename + pointer.get(), R.color.purple_primary);
                 }
                 updateModifier();
