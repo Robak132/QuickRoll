@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.robak.android.quickroll.databinding.*;
 import com.robak.android.quickroll.fragments.BowModifiers;
 import com.robak.android.quickroll.fragments.MainTable;
+import com.robak.android.quickroll.fragments.ShieldModifiers;
 import com.robak.android.quickroll.fragments.SwordModifiers;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
-    static int generalMode = 2;
+    static int generalMode = 1;
     int modifier = 0;
     int SLModifier = 0;
     int advantage = 0;
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
 
         List<MainTable> tables = new ArrayList<>();
         tables.add(new MainTable(new SwordModifiers()));
-        tables.add(new MainTable(new SwordModifiers()));
+        tables.add(new MainTable(new ShieldModifiers()));
         tables.add(new MainTable(new BowModifiers()));
-        replaceFragment(tables.get(2), R.id.mainTableFrame);
+        replaceFragment(tables.get(generalMode), R.id.mainTableFrame);
 
         for (int i=0; i<3; i++) {
             int finalI = i;

@@ -37,7 +37,7 @@
             app:layout_constraintStart_toEndOf="@+id/category0"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_shield"
-            app:tint="@color/black" />
+            app:tint="@color/purple_primary" />
 
         <ImageView
             android:id="@+id/category2"
@@ -48,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_bow"
-            app:tint="@color/purple_primary" />
+            app:tint="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout

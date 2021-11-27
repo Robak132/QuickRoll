@@ -30,6 +30,6 @@ public class Modifier {
         this.advantage = advantage;
     }
     public int getNumericModifier() {
-        return advantage * 10 + modifier;
+        return advantage + modifier;
     }
 }

@@ -26,7 +26,11 @@ public class SwordModifiers extends FragmentWithTools {
     }
 
     @Override
-    protected void updateModifier() {
-
+    protected int getModifier() {
+        return 0;
+    }
+    @Override
+    protected int getSLModifier() {
+        return 0;
     }
 }

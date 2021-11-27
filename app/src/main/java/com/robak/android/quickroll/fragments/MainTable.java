@@ -25,8 +25,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 public class MainTable extends FragmentWithTools {
-    private ObservableModifier viewModel;
-
     Modifier modifier = new Modifier();
     Fragment modifierFragment;
 
@@ -43,8 +41,8 @@ public class MainTable extends FragmentWithTools {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        viewModel = new ViewModelProvider(this).get(ObservableModifier.class);
-        viewModel.observe(this, modifier -> updateModifier());
+        observableModifier = new ViewModelProvider(this).get(ObservableModifier.class);
+        observableModifier.observe(this, modifier -> updateModifier());
 
         EditText valueField = view.findViewById(R.id.value_field);
         valueField.addTextChangedListener((TextChangedAdapter) (s, start, before, count) -> parseRoll());
@@ -100,7 +98,7 @@ public class MainTable extends FragmentWithTools {
         editText.setText(String.join(" ", stringList));
     }
     protected void updateModifier() {
-        modifier = viewModel.getModifierObject();
+        modifier = observableModifier.getModifierObject();
         ((EditText) view.findViewById(R.id.modifier_field)).setText(String.valueOf(modifier.getModifier()));
         ((EditText) view.findViewById(R.id.SL_modifier_field)).setText(String.format(getString(R.string.SL), modifier.getSLModifier()));
         parseRoll();
@@ -109,5 +107,14 @@ public class MainTable extends FragmentWithTools {
     private boolean clearEditView(View view) {
         ((EditText) view).setText("");
         return false;
+    }
+
+    @Override
+    protected int getModifier() {
+        return 0;
+    }
+    @Override
+    protected int getSLModifier() {
+        return 0;
     }
 }

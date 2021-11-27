@@ -20,7 +20,6 @@ import com.robak.android.quickroll.tools.ObservableModifier;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class BowModifiers extends FragmentWithTools {
-
     AtomicReference<Integer> range = new AtomicReference<>(2);
     AtomicReference<Integer> enemySize = new AtomicReference<>(3);
     AtomicReference<Integer> aim = new AtomicReference<>(0);
@@ -43,17 +42,17 @@ public class BowModifiers extends FragmentWithTools {
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.size_table);
-        addImageViewSeries(parentLayout, "size", 7, false, enemySize);
+        addImageViewSeries(parentLayout, "size", 6, false, enemySize);
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.group_table);
         addImageView(parentLayout, "aim", aim);
-        addImageViewSeries(parentLayout, "group", 3, true, group);
+        addImageViewSeries(parentLayout, "group", 1, 3, true, group);
         addImageView(parentLayout, "fear", fear);
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.obstacle_table);
-        addImageViewSeries(parentLayout, "obstacle", 3, true, obstacle);
+        addImageViewSeries(parentLayout, "obstacle", 1, 3, true, obstacle);
         setupConstraints(parentLayout);
     }
 
@@ -71,11 +70,7 @@ public class BowModifiers extends FragmentWithTools {
     }
 
     @Override
-    protected void updateModifier() {
-        observableModifier.setModifier(getModifier());
-        observableModifier.setSLModifier(getSLModifier());
-    }
-    int getModifier() {
+    protected int getModifier() {
         int enemySizeMod = enemySize.get() - 3;
         enemySizeMod = enemySizeMod < 0 ? enemySizeMod * 10 : enemySizeMod * 20;
         int rangeMod = 2 - range.get();
@@ -87,7 +82,8 @@ public class BowModifiers extends FragmentWithTools {
         int totalModifier = enemySizeMod + obstacleMod + rangeMod + groupMod + aimMod;
         return limitToRange(totalModifier, -30, 60);
     }
-    int getSLModifier() {
+    @Override
+    protected int getSLModifier() {
         return fear.get() == 0 ? 0 : -1;
     }
 }

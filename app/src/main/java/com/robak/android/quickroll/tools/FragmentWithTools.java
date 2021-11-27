@@ -15,7 +15,7 @@ import com.robak.android.quickroll.R;
 import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class FragmentWithTools extends Fragment {
-    protected ObservableModifier observableModifier;
+    protected ObservableModifier observableModifier = new ObservableModifier();
     protected View view;
 
     protected ImageView getImageViewByTag(View view, String tag) {
@@ -43,7 +43,9 @@ public abstract class FragmentWithTools extends Fragment {
     }
 
     protected void addImageViewSeries(ConstraintLayout parent, String basename, int end, boolean turnOff, AtomicReference<Integer> pointer) {
-        int begin = turnOff ? 1 : 0;
+        addImageViewSeries(parent, basename, 0, end, turnOff, pointer);
+    }
+    protected void addImageViewSeries(ConstraintLayout parent, String basename, int begin, int end, boolean turnOff, AtomicReference<Integer> pointer) {
         for (int i = begin; i <= end; i++) {
             int finalI = i;
             ImageView childView = createImageView(basename + i);
@@ -96,5 +98,10 @@ public abstract class FragmentWithTools extends Fragment {
         }
     }
 
-    protected abstract void updateModifier();
+    protected void updateModifier() {
+        observableModifier.setModifier(getModifier());
+        observableModifier.setSLModifier(getSLModifier());
+    }
+    protected abstract int getModifier();
+    protected abstract int getSLModifier();
 }
