@@ -14,11 +14,11 @@ import com.robak.android.quickroll.R;
 import com.robak.android.quickroll.tools.FragmentWithTools;
 import com.robak.android.quickroll.tools.ObservableModifier;
 
+import java.lang.ref.Reference;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class ShieldModifiers extends FragmentWithTools {
     AtomicReference<Integer> enemySize = new AtomicReference<>(3);
-
     // INIT
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
