@@ -1,16 +1,13 @@
 package com.robak.android.quickroll.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.robak.android.quickroll.R;
@@ -47,12 +44,12 @@ public class BowModifiers extends FragmentWithTools {
 
         parentLayout = view.findViewById(R.id.group_table);
         addImageView(parentLayout, "aim", aim);
-        addImageViewSeries(parentLayout, "group", 1, 3, true, group);
+        addImageViewSeries(parentLayout, "group", 3, true, group);
         addImageView(parentLayout, "fear", fear);
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.obstacle_table);
-        addImageViewSeries(parentLayout, "obstacle", 1, 3, true, obstacle);
+        addImageViewSeries(parentLayout, "obstacle", 3, true, obstacle);
         setupConstraints(parentLayout);
     }
 

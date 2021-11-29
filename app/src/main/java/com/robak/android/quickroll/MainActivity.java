@@ -24,12 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ActivityMainBinding binding;
-
     static int generalMode = 1;
-    int modifier = 0;
-    int SLModifier = 0;
-    int advantage = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         adView.setAdUnitId("/6499/example/banner");
         // TODO: Add adView to your view hierarchy.
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        com.robak.android.quickroll.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         List<MainTable> tables = new ArrayList<>();
@@ -72,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         int id = getResources().getIdentifier(name, "id", getPackageName());
         return findViewById(id);
     }
-    private void setImageColor(View view, String name, int color) {
+    private void setImageColor(String name, int color) {
         getImageViewByName(name).setColorFilter(getColor(color));
     }
 }
