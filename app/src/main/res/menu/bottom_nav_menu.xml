@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sword"
+        android:title="Attack"
+        android:icon="@drawable/ic_sword"/>
+    <item
+        android:id="@+id/shield"
+        android:title="Opposed"
+        android:icon="@drawable/ic_shield"/>
+    <item
+        android:id="@+id/bow"
+        android:title="Ranged"
+        android:icon="@drawable/ic_bow"/>
+</menu>

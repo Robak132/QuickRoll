@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,13 +15,17 @@ import com.robak.android.quickroll.R;
 import com.robak.android.quickroll.tools.FragmentWithTools;
 import com.robak.android.quickroll.tools.ObservableModifier;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 public class BowModifiers extends FragmentWithTools {
     AtomicReference<Integer> range = new AtomicReference<>(2);
+    List<ImageView> rangeList;
     AtomicReference<Integer> enemySize = new AtomicReference<>(3);
+    List<ImageView> enemySizeList;
     AtomicReference<Integer> aim = new AtomicReference<>(0);
     AtomicReference<Integer> group = new AtomicReference<>(0);
+    List<ImageView> groupList;
     AtomicReference<Integer> fear = new AtomicReference<>(0);
     AtomicReference<Integer> obstacle = new AtomicReference<>(0);
 
@@ -35,16 +40,16 @@ public class BowModifiers extends FragmentWithTools {
         observableModifier = new ViewModelProvider(requireParentFragment()).get(ObservableModifier.class);
 
         ConstraintLayout parentLayout = view.findViewById(R.id.range_table);
-        addImageViewSeries(parentLayout, "range", 4, false, range);
+        rangeList = addImageViewSeries(parentLayout, "range", 4, false, range);
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.size_table);
-        addImageViewSeries(parentLayout, "size", 6, false, enemySize);
+        enemySizeList = addImageViewSeries(parentLayout, "size", 6, false, enemySize);
         setupConstraints(parentLayout);
 
         parentLayout = view.findViewById(R.id.group_table);
         addImageView(parentLayout, "aim", aim);
-        addImageViewSeries(parentLayout, "group", 3, true, group);
+        groupList = addImageViewSeries(parentLayout, "group", 3, true, group);
         addImageView(parentLayout, "fear", fear);
         setupConstraints(parentLayout);
 
@@ -58,9 +63,10 @@ public class BowModifiers extends FragmentWithTools {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
 
-        setImageColorByTag(view, "range" + range.get(), R.color.purple_primary);
-        setImageColorByTag(view, "size" + enemySize.get(), R.color.purple_primary);
-        if (group.get() != 0)    setImageColorByTag(view, "group" + group, R.color.purple_primary);
+        rangeList.get(range.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
+        enemySizeList.get(enemySize.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
+        groupList.get(group.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
+
         if (obstacle.get() != 0) setImageColorByTag(view, "obstacle" + obstacle, R.color.purple_primary);
         if (fear.get() != 0)     setImageColorByTag(view, "fear", R.color.purple_primary);
         if (aim.get() != 0)      setImageColorByTag(view, "aim", R.color.purple_primary);

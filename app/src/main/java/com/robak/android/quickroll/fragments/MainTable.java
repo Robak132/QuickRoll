@@ -31,6 +31,9 @@ public class MainTable extends FragmentWithTools {
     public MainTable(Fragment _modifierFragment) {
         modifierFragment = _modifierFragment;
     }
+    public MainTable() {
+        modifierFragment = new SwordModifiers();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,7 +64,6 @@ public class MainTable extends FragmentWithTools {
             parseRoll();
         });
     }
-
     private void parseRoll() {
         try {
             String valueText = ((EditText) view.findViewById(R.id.value_field)).getText().toString();

@@ -23,6 +23,8 @@ public class SwordModifiers extends FragmentWithTools {
     List<ImageView> yourSizeList;
     AtomicReference<Integer> enemySize = new AtomicReference<>(3);
     List<ImageView> enemySizeList;
+    AtomicReference<Integer> numericAdvantage = new AtomicReference<>(0);
+    List<ImageView> numericAdvantageList;
 
     // INIT
     @Override
@@ -40,6 +42,10 @@ public class SwordModifiers extends FragmentWithTools {
         parentLayout = view.findViewById(R.id.enemy_size_table);
         enemySizeList = addImageViewSeries(parentLayout, "size", 6, false, enemySize);
         setupConstraints(parentLayout);
+
+        parentLayout = view.findViewById(R.id.numeric_advantage_table);
+        numericAdvantageList = addImageViewSeries(parentLayout, "number", 2, false, numericAdvantage);
+        setupConstraints(parentLayout);
     }
 
     // RESUME
@@ -49,11 +55,14 @@ public class SwordModifiers extends FragmentWithTools {
 
         yourSizeList.get(yourSize.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
         enemySizeList.get(enemySize.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
+        numericAdvantageList.get(numericAdvantage.get()).setColorFilter(getActivity().getColor(R.color.purple_primary));
     }
 
     @Override
     protected int getModifier() {
-        return enemySize.get() > yourSize.get() ? 10 : 0;
+        int enemySizeMod =  enemySize.get() > yourSize.get() ? 10 : 0;
+        int numericAdvantageMod =  numericAdvantage.get() * 20;
+        return enemySizeMod + numericAdvantageMod;
     }
     @Override
     protected int getSLModifier() {
