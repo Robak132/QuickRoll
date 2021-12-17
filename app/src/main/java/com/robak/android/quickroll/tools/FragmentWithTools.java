@@ -86,7 +86,7 @@ public abstract class FragmentWithTools extends Fragment {
         childView.setImageResource(getDrawableByName("ic_" + basename));
         childView.setOnClickListener(v -> {
             int color = pointer.get() == 1 ? R.color.black : R.color.purple_primary;
-            setImageColorByTag(view, basename, color);
+            childView.setColorFilter(getActivity().getColor(color));
             pointer.set(1 - pointer.get());
             updateModifier();
         });
